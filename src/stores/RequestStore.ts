@@ -10,8 +10,22 @@ export const useRequestStore = defineStore('request', () => {
 
     const authStore = useAuthStore();
 
-    const addRequest = (payload: Request) => {
-        requests.value.push(payload)
+    const addRequest = async (payload: Request) => {
+        const response = await fetch(`https://vue-http-demo-7a2bd-default-rtdb.europe-west1.firebasedatabase.app/requests/${payload.coachId}.json`, {
+            method: 'POST',
+            body: JSON.stringify(payload)
+        });
+
+        const responseData = await response.json();
+
+        if (!response.ok) {
+            const error = new Error(responseData.message || 'Failed to send request.');
+            throw error;
+        }
+
+        payload.id = responseData.name;
+        
+        requests.value = [...requests.value, payload]
     }
 
     const setRequests = (payload: Request[]) => {

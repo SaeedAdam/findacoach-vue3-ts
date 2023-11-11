@@ -1,5 +1,6 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+import { useAuthStore } from './AuthStore'
 
 import type { Coach } from '@/models/coach.interface';
 
@@ -7,6 +8,7 @@ export const useCoachStore = defineStore('coach', () => {
     const coaches = ref<Coach[]>([])
     const lastFetch = ref<number | null>(null)
 
+    const authStore = useAuthStore();
 
     const registerCoach = (payload: Coach) => {
         const userId = localStorage.getItem('userId');
@@ -34,9 +36,8 @@ export const useCoachStore = defineStore('coach', () => {
     }
 
     const isCoach = computed(() => {
-        const user = localStorage.getItem('user')
-        const parsedUser = JSON.parse(user || '{}')
-        return parsedUser.isCoach
+        const userId = authStore.userId
+        return coaches.value.some(coach => coach.id === userId)
     })
 
     const hasCoaches = computed(() => {
@@ -61,8 +62,8 @@ export const useCoachStore = defineStore('coach', () => {
         for (const key in responseData) {
             const coach = {
                 id: key,
-                firstName: responseData[key].firstName,
-                lastName: responseData[key].lastName,
+                firstName: responseData[key].firstname,
+                lastName: responseData[key].lastname,
                 description: responseData[key].description,
                 rate: responseData[key].rate,
                 areas: responseData[key].areas

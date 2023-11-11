@@ -12,8 +12,9 @@
                     <base-spinner></base-spinner>
                 </div>
                 <ul v-else-if="hasRequests">
-                    <request-item v-for="request in requests" :key="request.id" :id="request.id" :coach-id="request.coachId"
-                        :email="request.userEmail" :message="request.message" />
+                    <request-item v-for="request in requests" :key="request.id" :id="request.id"
+                        :coach-id="request.coachId!" :email="request.userEmail" :message="request.message" />
+                    :email="request.userEmail" :message="request.message" />
                 </ul>
                 <h3 v-else>You haven't received any requests yet!</h3>
             </base-card>
