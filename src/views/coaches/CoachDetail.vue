@@ -1,40 +1,3 @@
-<template>
-    <div>
-        <section>
-            <base-card>
-                <div v-if="selectedCoach">
-                    <h2>{{ fullName }}</h2>
-                    <h3>${{ rate }}/hour</h3>
-                </div>
-                <div v-else>
-                    <base-spinner></base-spinner>
-                </div>
-            </base-card>
-        </section>
-        <section>
-            <base-card>
-                <header>
-                    <h2>Interested? Reach out now!</h2>
-                    <base-button link :to="contactLink">Contact</base-button>
-                </header>
-                <router-view />
-            </base-card>
-        </section>
-        <section>
-            <base-card>
-                <div v-if="selectedCoach">
-                    <base-badge v-for="area in areas" :key="area" :title="area" :type="area">
-                    </base-badge>
-                    <p>{{ description }}</p>
-                </div>
-                <div v-else>
-                    <base-spinner></base-spinner>
-                </div>
-            </base-card>
-        </section>
-    </div>
-</template>
-
 <script setup lang="ts">
 import { ref, computed, defineProps, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
@@ -90,3 +53,39 @@ const contactLink = computed(() => {
 
 </script>
 
+<template>
+    <div>
+        <section>
+            <base-card>
+                <div v-if="selectedCoach">
+                    <h2>{{ fullName }}</h2>
+                    <h3>${{ rate }}/hour</h3>
+                </div>
+                <div v-else>
+                    <base-spinner></base-spinner>
+                </div>
+            </base-card>
+        </section>
+        <section>
+            <base-card>
+                <header>
+                    <h2>Interested? Reach out now!</h2>
+                    <base-button link :to="contactLink">Contact</base-button>
+                </header>
+                <router-view />
+            </base-card>
+        </section>
+        <section>
+            <base-card>
+                <div v-if="selectedCoach">
+                    <base-badge v-for="area in areas" :key="area" :title="area" :type="area">
+                    </base-badge>
+                    <p>{{ description }}</p>
+                </div>
+                <div v-else>
+                    <base-spinner></base-spinner>
+                </div>
+            </base-card>
+        </section>
+    </div>
+</template>

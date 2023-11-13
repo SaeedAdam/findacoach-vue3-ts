@@ -1,35 +1,3 @@
-<template>
-    <div>
-        <base-dialog :show="!!error" title="An error occurred!" @close="handleError">
-            <p>{{ error }}</p>
-        </base-dialog>
-        <section>
-            <coach-filter @change-filter="setFilters"></coach-filter>
-        </section>
-        <section>
-            <base-card>
-                <div class="control">
-                    <base-button mode="outline" @click="loadCoaches(true)">Refresh</base-button>
-                    <base-button v-if="!isCoach && !isLoading && isLoggedIn" link to="/register">Register as
-                        Coach</base-button>
-                    <base-button v-if="!isLoggedIn" link to="/auth?redirect=register">Login to Register as
-                        Coach</base-button>
-                </div>
-                <div v-if="isLoading">
-                    <base-spinner></base-spinner>
-                </div>
-                <ul v-else-if="hasCoaches">
-                    <CoachItem v-for="coach in filteredCoaches" :key="coach.id" :id="coach.id" :first-name="coach.firstName"
-                        :last-name="coach.lastName" :areas="coach.areas" :description="coach.description"
-                        :rate="coach.rate">
-                    </CoachItem>
-                </ul>
-                <h3 v-else>No coaches found. Please register as a coach.</h3>
-            </base-card>
-        </section>
-    </div>
-</template>
-
 <script setup lang="ts">
 import { ref, computed, onBeforeMount } from 'vue';
 import { useCoachStore } from '@/stores/CoachStore';
@@ -100,6 +68,38 @@ const handleError = () => {
 };
 
 </script>
+
+<template>
+    <div>
+        <base-dialog :show="!!error" title="An error occurred!" @close="handleError">
+            <p>{{ error }}</p>
+        </base-dialog>
+        <section>
+            <coach-filter @change-filter="setFilters"></coach-filter>
+        </section>
+        <section>
+            <base-card>
+                <div class="control">
+                    <base-button mode="outline" @click="loadCoaches(true)">Refresh</base-button>
+                    <base-button v-if="!isCoach && !isLoading && isLoggedIn" link to="/register">Register as
+                        Coach</base-button>
+                    <base-button v-if="!isLoggedIn" link to="/auth?redirect=register">Login to Register as
+                        Coach</base-button>
+                </div>
+                <div v-if="isLoading">
+                    <base-spinner></base-spinner>
+                </div>
+                <ul v-else-if="hasCoaches">
+                    <CoachItem v-for="coach in filteredCoaches" :key="coach.id" :id="coach.id" :first-name="coach.firstName"
+                        :last-name="coach.lastName" :areas="coach.areas" :description="coach.description"
+                        :rate="coach.rate">
+                    </CoachItem>
+                </ul>
+                <h3 v-else>No coaches found. Please register as a coach.</h3>
+            </base-card>
+        </section>
+    </div>
+</template>
 
 <style scoped>
 ul {

@@ -1,12 +1,3 @@
-<template>
-  <li>
-    <div>
-      <a :href="emailLink">{{ email }}</a>
-    </div>
-    <p>{{ message }}</p>
-  </li>
-</template>
-
 <script setup lang="ts">
 import { computed, defineProps } from 'vue';
 
@@ -46,6 +37,15 @@ const message = computed(() => props.message);
 const emailLink = computed(() => `mailto:${props.email}?subject=${messageSubject}&body=${messageBody}`);
 
 </script>
+
+<template>
+  <li>
+    <div>
+      <a :href="emailLink">{{ email }}</a>
+    </div>
+    <p>{{ message }}</p>
+  </li>
+</template>
 
 <style scoped>
 li {

@@ -1,9 +1,3 @@
-<template>
-  <span class="badge" :class="type">
-    {{ text }}
-  </span>
-</template>
-
 <script setup lang="ts">
 import { computed, defineProps } from 'vue';
 
@@ -20,6 +14,13 @@ const props = defineProps({
 
 const text = computed(() => props.title);
 </script>
+
+<template>
+  <span class="badge" :class="type">
+    {{ text }}
+  </span>
+</template>
+
 
 <style scoped>
 .badge {

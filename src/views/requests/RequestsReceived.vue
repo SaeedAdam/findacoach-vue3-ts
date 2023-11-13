@@ -1,27 +1,3 @@
-<template>
-    <div>
-        <base-dialog :show="!!error" title="An error occurred!" @close="handleError">
-            <p>{{ error }}</p>
-        </base-dialog>
-        <section>
-            <base-card>
-                <header>
-                    <h2>Requests Received</h2>
-                </header>
-                <div v-if="isLoading">
-                    <base-spinner></base-spinner>
-                </div>
-                <ul v-else-if="hasRequests">
-                    <request-item v-for="request in requests" :key="request.id" :id="request.id"
-                        :coach-id="request.coachId!" :email="request.userEmail" :message="request.message" />
-                    :email="request.userEmail" :message="request.message" />
-                </ul>
-                <h3 v-else>You haven't received any requests yet!</h3>
-            </base-card>
-        </section>
-    </div>
-</template>
-
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { useRequestStore } from '@/stores/RequestStore';
@@ -53,6 +29,31 @@ const handleError = () => {
 
 loadRequests();
 </script>
+
+
+<template>
+    <div>
+        <base-dialog :show="!!error" title="An error occurred!" @close="handleError">
+            <p>{{ error }}</p>
+        </base-dialog>
+        <section>
+            <base-card>
+                <header>
+                    <h2>Requests Received</h2>
+                </header>
+                <div v-if="isLoading">
+                    <base-spinner></base-spinner>
+                </div>
+                <ul v-else-if="hasRequests">
+                    <request-item v-for="request in requests" :key="request.id" :id="request.id"
+                        :coach-id="request.coachId!" :email="request.userEmail" :message="request.message" />
+                    :email="request.userEmail" :message="request.message" />
+                </ul>
+                <h3 v-else>You haven't received any requests yet!</h3>
+            </base-card>
+        </section>
+    </div>
+</template>
 
 <style scoped>
 header {

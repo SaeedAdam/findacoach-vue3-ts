@@ -1,26 +1,3 @@
-<template>
-  <teleport to="body">
-    <div v-if="show" @click="tryClose" class="backdrop"></div>
-    <transition name="dialog">
-      <dialog open v-if="show">
-        <header>
-          <slot name="header">
-            <h2>{{ title }}</h2>
-          </slot>
-        </header>
-        <section>
-          <slot></slot>
-        </section>
-        <menu v-if="!fixed">
-          <slot name="actions">
-            <base-button @click="tryClose">Close</base-button>
-          </slot>
-        </menu>
-      </dialog>
-    </transition>
-  </teleport>
-</template>
-
 <script setup lang="ts">
 import { defineProps, defineEmits } from 'vue';
 
@@ -49,6 +26,29 @@ const tryClose = () => {
   emit('close');
 };
 </script>
+
+<template>
+  <teleport to="body">
+    <div v-if="show" @click="tryClose" class="backdrop"></div>
+    <transition name="dialog">
+      <dialog open v-if="show">
+        <header>
+          <slot name="header">
+            <h2>{{ title }}</h2>
+          </slot>
+        </header>
+        <section>
+          <slot></slot>
+        </section>
+        <menu v-if="!fixed">
+          <slot name="actions">
+            <base-button @click="tryClose">Close</base-button>
+          </slot>
+        </menu>
+      </dialog>
+    </transition>
+  </teleport>
+</template>
 
 <style scoped>
 .backdrop {

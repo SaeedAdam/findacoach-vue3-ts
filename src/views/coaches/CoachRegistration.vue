@@ -1,12 +1,3 @@
-<template>
-    <section>
-        <base-card>
-            <h2>Register as a coach now!</h2>
-            <coach-form @save-form="saveData"></coach-form>
-        </base-card>
-    </section>
-</template>
-
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import { useCoachStore } from '@/stores/CoachStore';
@@ -23,4 +14,12 @@ const saveData = (data: Coach) => {
 };
 </script>
 
-<style scoped></style>
+
+<template>
+    <section>
+        <base-card>
+            <h2>Register as a coach now!</h2>
+            <coach-form @save-form="saveData"></coach-form>
+        </base-card>
+    </section>
+</template>

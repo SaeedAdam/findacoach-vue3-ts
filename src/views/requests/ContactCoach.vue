@@ -1,20 +1,3 @@
-<template>
-    <form @submit.prevent="sendMessage">
-        <div class="form-control">
-            <label for="email">Youe E-Mail</label>
-            <input type="email" id="email" v-model.trim="email" />
-        </div>
-        <div class="form-control">
-            <label for="message">Message</label>
-            <textarea name="" id="message" rows="5" v-model.trim="message"></textarea>
-        </div>
-        <p v-if="!formIsValid">Please enter a valid email and non-empty message.</p>
-        <div class="actions">
-            <base-button type="submit">Send Message</base-button>
-        </div>
-    </form>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
@@ -49,6 +32,22 @@ const sendMessage = () => {
 </script>
 
 
+<template>
+    <form @submit.prevent="sendMessage">
+        <div class="form-control">
+            <label for="email">Youe E-Mail</label>
+            <input type="email" id="email" v-model.trim="email" />
+        </div>
+        <div class="form-control">
+            <label for="message">Message</label>
+            <textarea name="" id="message" rows="5" v-model.trim="message"></textarea>
+        </div>
+        <p v-if="!formIsValid">Please enter a valid email and non-empty message.</p>
+        <div class="actions">
+            <base-button type="submit">Send Message</base-button>
+        </div>
+    </form>
+</template>
 
 <style scoped>
 form {

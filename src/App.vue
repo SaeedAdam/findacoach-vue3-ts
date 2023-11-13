@@ -1,12 +1,3 @@
-<template>
-  <the-header></the-header>
-  <router-view v-slot="slotProps">
-    <transition name="route" mode="out-in">
-      <component :is="slotProps.Component"></component>
-    </transition>
-  </router-view>
-</template>
-
 <script setup lang="ts">
 import { computed, watch } from 'vue';
 import { useRouter } from 'vue-router'
@@ -28,4 +19,13 @@ watch(didAutoLogout, isLoggedOut => {
 authStore.tryLogin();
 </script>
 
-<style scoped></style>
+
+<template>
+  <the-header></the-header>
+  <router-view v-slot="slotProps">
+    <transition name="route" mode="out-in">
+      <component :is="slotProps.Component"></component>
+    </transition>
+  </router-view>
+</template>
+

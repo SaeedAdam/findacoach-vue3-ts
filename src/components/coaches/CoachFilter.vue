@@ -1,21 +1,3 @@
-<template>
-    <base-card>
-        <h2>Find Your Coach</h2>
-        <span class="filter-option">
-            <input type="checkbox" id="frontend" checked @change="setFilter" />
-            <label for="frontend">Frontend</label>
-        </span>
-        <span class="filter-option">
-            <input type="checkbox" id="backend" checked @change="setFilter" />
-            <label for="backend">Backend</label>
-        </span>
-        <span class="filter-option">
-            <input type="checkbox" id="career" checked @change="setFilter" />
-            <label for="career">Career</label>
-        </span>
-    </base-card>
-</template>
-
 <script setup lang="ts">
 import { ref, defineEmits } from 'vue';
 import type { filter } from '@/models/filter.interface';
@@ -39,6 +21,24 @@ const setFilter = (event : Event) => {
     emit('change-filter', updatedFilters);
 };
 </script>
+
+<template>
+    <base-card>
+        <h2>Find Your Coach</h2>
+        <span class="filter-option">
+            <input type="checkbox" id="frontend" checked @change="setFilter" />
+            <label for="frontend">Frontend</label>
+        </span>
+        <span class="filter-option">
+            <input type="checkbox" id="backend" checked @change="setFilter" />
+            <label for="backend">Backend</label>
+        </span>
+        <span class="filter-option">
+            <input type="checkbox" id="career" checked @change="setFilter" />
+            <label for="career">Career</label>
+        </span>
+    </base-card>
+</template>
 
 <style scoped>
 h2 {
